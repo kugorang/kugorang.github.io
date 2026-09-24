@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Facet Sudoku support: gameplay help, saved progress, and contact information.">
+  <title>Facet Sudoku · Support</title>
+  <style>
+    :root {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", "Apple SD Gothic Neo", sans-serif;
+      color: #24304a;
+      background: #fbf8f1;
+      line-height: 1.65;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    main { width: min(100% - 2rem, 52rem); margin-inline: auto; padding: 2.5rem 0 4rem; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { font-size: clamp(2.4rem, 8vw, 4.3rem); letter-spacing: -.055em; line-height: 1.06; margin-bottom: .9rem; }
+    h2 { font-size: 1.35rem; letter-spacing: -.025em; margin-bottom: .75rem; }
+    h3 { font-size: 1.05rem; margin-bottom: .25rem; }
+    p { margin-bottom: 1rem; }
+    a { color: #2259c5; text-underline-offset: .2em; }
+    a:focus-visible { outline: 3px solid #2259c5; outline-offset: 4px; border-radius: .2rem; }
+    .eyebrow { color: #486187; font-size: .85rem; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 1rem; }
+    .intro { font-size: clamp(1.06rem, 2vw, 1.2rem); color: #4b5b72; max-width: 38rem; }
+    .hero { padding: 1.25rem 0 1.5rem; }
+    .language-links { display: flex; gap: .65rem; flex-wrap: wrap; margin: 1.5rem 0 0; }
+    .language-links a { padding: .35rem .8rem; border: 1px solid #cbd7eb; border-radius: 999px; background: white; font-weight: 650; text-decoration: none; }
+    section { background: #fff; border: 1px solid #e3e6ec; border-radius: 1.25rem; padding: clamp(1.2rem, 3vw, 1.7rem); margin-block: 1rem; box-shadow: 0 8px 26px rgba(24, 45, 83, .04); }
+    .questions { display: grid; gap: 1rem; }
+    .questions p { margin-bottom: 0; color: #506077; }
+    .contact { background: #e8f0ff; border-color: #cadbfa; }
+    .contact-link { display: inline-block; background: #2259c5; color: #fff; padding: .72rem 1.1rem; border-radius: .85rem; font-weight: 700; text-decoration: none; overflow-wrap: anywhere; }
+    .contact-link:hover { background: #17469f; }
+    .muted { color: #5b6b80; font-size: .93rem; }
+    footer { color: #5b6b80; font-size: .9rem; padding: 1.25rem .2rem 0; }
+    @media (max-width: 35rem) { .hero { padding-top: 0; } section { border-radius: 1rem; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="hero">
+      <p class="eyebrow">kugorang · App support</p>
+      <h1>Facet Sudoku</h1>
+      <p class="intro">A calmer place for classic Sudoku, connected Cube puzzles, and a daily ritual.</p>
+      <nav class="language-links" aria-label="Page language">
+        <a href="#help-en" lang="en">English</a>
+        <a href="#help-ko" lang="ko">한국어</a>
+      </nav>
+    </header>
+
+    <section id="help-en" lang="en" aria-labelledby="help-en-title">
+      <h2 id="help-en-title">How to play and get help</h2>
+      <div class="questions">
+        <div><h3>Where do I start?</h3><p>Choose New Game for a classic grid or a connected Cube puzzle. The Daily calendar opens the puzzle for a selected date.</p></div>
+        <div><h3>Where is my progress?</h3><p>Facet saves progress on your device as you play. Reinstalling the app or clearing its data may remove that local progress. An account or cross-device sync is not available.</p></div>
+        <div><h3>Can I change the look or language?</h3><p>Open Settings to choose an appearance, language, and text size.</p></div>
+      </div>
+    </section>
+
+    <section id="help-ko" lang="ko" aria-labelledby="help-ko-title">
+      <h2 id="help-ko-title">게임 안내와 도움말</h2>
+      <div class="questions">
+        <div><h3>어디서 시작하나요?</h3><p>새 게임에서 클래식 격자 또는 연결된 큐브 퍼즐을 고를 수 있습니다. 일일 퍼즐 달력에서는 날짜를 선택할 수 있습니다.</p></div>
+        <div><h3>진행 상황은 어디에 저장되나요?</h3><p>플레이 진행 상황은 기기에 저장됩니다. 앱을 다시 설치하거나 앱 데이터를 지우면 로컬 진행 상황이 사라질 수 있습니다. 현재 계정과 기기 간 동기화는 제공하지 않습니다.</p></div>
+        <div><h3>화면과 언어를 바꿀 수 있나요?</h3><p>설정에서 화면 모양, 언어, 글자 크기를 선택하세요.</p></div>
+      </div>
+    </section>
+
+    <section class="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact · 문의</h2>
+      <p>For help with Facet Sudoku, email the developer. Please include the app version, device model, OS version, and steps to reproduce an issue. / 문의할 때 앱 버전, 기기 모델, 운영체제 버전, 문제 발생 순서를 알려주세요.</p>
+      <a class="contact-link" href="mailto:ialskdji@gmail.com?subject=Facet%20Sudoku%20support">Email Facet support · 이메일 문의</a>
+      <p class="muted">Please do not send passwords or payment credentials. / 비밀번호나 결제 인증 정보는 보내지 마세요.</p>
+    </section>
+
+    <footer>Facet Sudoku · Hyeonwoo Kim · Updated 2026-09-25</footer>
+  </main>
+</body>
+</html>
