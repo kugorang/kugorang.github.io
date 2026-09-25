@@ -7,7 +7,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
-SITE = 'https://hyeonwoo.kugora.ng'
+SITE = 'https://hw.kugora.ng'
 ESC = html.escape
 ARROW = '<span aria-hidden="true">↗</span>'
 

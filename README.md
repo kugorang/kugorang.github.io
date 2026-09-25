@@ -1,6 +1,6 @@
 # 김현우 · Hyeonwoo Kim
 
-개인 포트폴리오: <https://hyeonwoo.kugora.ng/>
+개인 포트폴리오: <https://hw.kugora.ng/>
 
 | 페이지 | 역할 |
 | --- | --- |
@@ -33,10 +33,10 @@ JavaScript를 사용할 수 없어도 소개와 링크를 볼 수 있습니다.
 - `assets/site.css`: 반응형 디자인과 작품 표지
 - `assets/catalog.js`: 검색, 분야 필터, 결과 개수와 초기화
 - `assets/profile.png`: 사용자가 제공한 프로필 이미지 원본
-- `CNAME`: `hyeonwoo.kugora.ng`
+- `CNAME`: `hw.kugora.ng`
 
 GitHub Pages가 `main`의 루트를 게시합니다. `CNAME`에 지정한 주소를 저장소 Pages 설정에
-등록하고, DNS에서 `hyeonwoo` CNAME을 `kugorang.github.io.`로 연결합니다.
+등록하고, DNS에서 `hw` CNAME을 `kugorang.github.io.`로 연결합니다.
 기존 <https://kugorang.github.io/> 주소는 새 주소로 이동합니다.
 도메인 변경 시 `scripts/build.py`의 `SITE`도 수정하고 다시 생성합니다.
 
@@ -52,7 +52,7 @@ GitHub Pages가 `main`의 루트를 게시합니다. `CNAME`에 지정한 주소
 | 오선로 | `kugorang/oseonro`의 `gh-pages` | <https://kugorang.github.io/oseonro/> |
 
 별도 도메인이 없는 프로젝트 Pages는 계정 포트폴리오의 커스텀 도메인을 상속하므로,
-Facet과 오선로의 기존 주소는 `hyeonwoo.kugora.ng/Sudoku/`, `hyeonwoo.kugora.ng/oseonro/`로
+Facet과 오선로의 기존 주소는 `hw.kugora.ng/Sudoku/`, `hw.kugora.ng/oseonro/`로
 이동합니다. 게시 소스는 계속 각각의 저장소입니다.
 
 `app-ads.txt`는 광고 공급자 확인에 사용하므로 유지합니다. 앱 소스, 인증 정보, 비공개 개발 문서는 게시하지 않습니다.
