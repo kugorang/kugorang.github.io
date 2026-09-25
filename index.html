@@ -3,68 +3,116 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light dark">
-  <meta name="description" content="필데이 Fillday 개발자 홈페이지. 앱 지원, 개인정보 처리방침과 이용약관을 확인하세요.">
-  <title>필데이 Fillday · 개발자 홈페이지</title>
-  <style>
-    :root { color-scheme: light dark; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", sans-serif; background: #f7f8fb; color: #24354b; }
-    * { box-sizing: border-box; }
-    body { margin: 0; padding: 2rem 1.25rem; line-height: 1.7; overflow-wrap: anywhere; }
-    main { max-inline-size: 42rem; margin-inline: auto; }
-    h1 { margin-block: .25rem 1rem; font-size: clamp(2rem, 8vw, 3rem); line-height: 1.25; letter-spacing: -.025em; }
-    h2 { margin-block: 0 .75rem; font-size: 1.25rem; }
-    p { margin-block: .6rem; }
-    .eyebrow, footer { color: #54647a; }
-    .eyebrow { font-size: .9375rem; }
-    .intro { margin-block-end: 1.75rem; }
-    section { padding: 1.5rem; margin-block: 1rem; background: #fff; border: 1px solid #dce3ed; border-radius: 1.25rem; }
-    a { color: #2454ac; text-underline-offset: .2em; text-decoration-thickness: .08em; }
-    a:focus-visible { outline: 3px solid currentColor; outline-offset: 4px; border-radius: .15rem; }
-    .support { display: block; padding-block: .5rem; font-weight: 650; }
-    ul { padding: 0; margin: 0; list-style: none; }
-    li + li { border-block-start: 1px solid #e6eaf0; }
-    li a { display: block; padding-block: .65rem; }
-    footer { margin-block-start: 2rem; font-size: .9375rem; }
-    @media (prefers-color-scheme: dark) {
-      :root { background: #121923; color: #edf2fa; }
-      section { background: #1c2635; border-color: #3e4c61; }
-      .eyebrow, footer { color: #b9c6d8; }
-      a { color: #a9c9ff; }
-      li + li { border-color: #3e4c61; }
-    }
-  </style>
+  <meta name="theme-color" content="#f7f5ef">
+  <meta name="description" content="김현우가 만든 앱과 게임. 필데이, 달빛 고물상, Facet Sudoku, 오선로를 소개합니다.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="kugorang · 앱과 게임">
+  <meta property="og:description" content="하루를 채우고, 이야기를 고치고, 새로운 놀이를 그립니다.">
+  <meta property="og:url" content="https://kugorang.github.io/">
+  <link rel="canonical" href="https://kugorang.github.io/">
+  <link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/site.css">
+  <title>kugorang · 앱과 게임</title>
 </head>
 <body>
-  <main>
-    <header class="intro">
-      <p class="eyebrow">kugorang · Developer</p>
-      <h1>필데이 <span lang="en">Fillday</span></h1>
-      <p>캘린더, 투두, 다이어리를 한곳에서.</p>
-      <p lang="en">Your calendar, to-dos, and diary in one place.</p>
-      <p lang="ja">カレンダー、ToDo、日記をひとつに。</p>
+  <a class="skip-link" href="#main">본문으로 바로 가기</a>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="kugorang 홈">
+        <span class="brand-mark" aria-hidden="true">k<span>·</span></span>
+        <span>kugorang</span>
+      </a>
+      <nav class="site-nav" aria-label="주 메뉴">
+        <a href="#apps">앱과 게임</a>
+        <a href="mailto:ialskdji@gmail.com">문의</a>
+      </nav>
     </header>
-    <section aria-labelledby="support-heading">
-      <h2 id="support-heading">앱 지원 · <span lang="en">Support</span></h2>
-      <p>앱 안내와 문의 방법은 지원 페이지에서 확인해 주세요.</p>
-      <a class="support" href="https://kugorang.github.io/Fillday/">필데이 지원 페이지 <span lang="en">/ App support</span></a>
-    </section>
-    <section aria-labelledby="privacy-heading">
-      <h2 id="privacy-heading">개인정보 처리방침</h2>
-      <ul>
-        <li><a href="https://kugorang.github.io/Fillday/privacy/ko.html" hreflang="ko">한국어 · 개인정보 처리방침</a></li>
-        <li><a href="https://kugorang.github.io/Fillday/privacy/en.html" hreflang="en" lang="en">English · Privacy policy</a></li>
-        <li><a href="https://kugorang.github.io/Fillday/privacy/ja.html" hreflang="ja" lang="ja">日本語 · プライバシーポリシー</a></li>
-      </ul>
-    </section>
-    <section aria-labelledby="terms-heading">
-      <h2 id="terms-heading">이용약관</h2>
-      <ul>
-        <li><a href="https://kugorang.github.io/Fillday/terms/ko.html" hreflang="ko">한국어 · 이용약관</a></li>
-        <li><a href="https://kugorang.github.io/Fillday/terms/en.html" hreflang="en" lang="en">English · Terms of service</a></li>
-        <li><a href="https://kugorang.github.io/Fillday/terms/ja.html" hreflang="ja" lang="ja">日本語 · 利用規約</a></li>
-      </ul>
-    </section>
-    <footer>필데이 Fillday · kugorang</footer>
-  </main>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Independent apps &amp; games · Kim Hyeonwoo</p>
+          <h1 id="hero-title">하루를 채우고,<br>이야기를 고치고,<br><em>새로운 놀이를 그립니다.</em></h1>
+          <p class="hero-description">일상을 기록하는 도구부터 천천히 머무는 게임까지. 김현우가 만든 앱과 게임을 한곳에 모았습니다.</p>
+          <a class="text-link hero-link" href="#apps">작업 둘러보기 <span aria-hidden="true">↘</span></a>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <span class="art-orbit art-orbit-one"></span>
+          <span class="art-orbit art-orbit-two"></span>
+          <span class="art-tile art-tile-calendar"><span></span><span></span><span></span><span></span></span>
+          <span class="art-tile art-tile-moon"></span>
+          <span class="art-tile art-tile-grid"><span></span><span></span><span></span><span></span></span>
+          <span class="art-note">♪</span>
+          <span class="art-center">k<span>·</span></span>
+        </div>
+      </section>
+
+      <section class="apps-section" id="apps" aria-labelledby="apps-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Selected work / 01—04</p>
+            <h2 id="apps-title">앱과 게임</h2>
+          </div>
+          <p>각 작업의 이야기와 자세한 안내를 만나보세요.</p>
+        </div>
+
+        <div class="app-grid">
+          <article class="app-card card-fillday">
+            <div class="card-top"><span>01 / EVERYDAY</span><span>앱</span></div>
+            <div class="card-art calendar-art" aria-hidden="true">
+              <div class="calendar-sheet"><span class="calendar-line"></span><span class="calendar-dots"></span><span class="calendar-dots"></span><span class="calendar-dots"></span></div>
+              <span class="calendar-sun"></span>
+            </div>
+            <div class="card-body">
+              <p class="card-kicker">Calendar · Todo · Diary</p>
+              <h3>필데이 <span lang="en">Fillday</span></h3>
+              <p>일정과 할 일, 하루의 마음을 한 흐름에 담는 플래너. 채운 만큼의 하루를 차분한 색으로 돌아봅니다.</p>
+              <a class="card-link" href="https://fillday.kugora.ng/">필데이 자세히 보기 <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+
+          <article class="app-card card-moonjunk">
+            <div class="card-top"><span>02 / STORY</span><span>게임 · 개발 중</span></div>
+            <div class="card-art moon-art" aria-hidden="true"><span class="moon-glow"></span><span class="moon-shape"></span><span class="moon-box"></span><span class="moon-spark spark-one">✦</span><span class="moon-spark spark-two">✧</span></div>
+            <div class="card-body">
+              <p class="card-kicker">Small repairs · Quiet discoveries</p>
+              <h3>달빛 고물상 <span lang="en">Moonjunk Workshop</span></h3>
+              <p>잊힌 물건을 수선하며 소포에 남은 이야기를 만나는 모바일 게임. 작은 공방에서 긴 밤길의 사연이 이어집니다.</p>
+              <a class="card-link" href="https://moonjunk.kugora.ng/">달빛 고물상 자세히 보기 <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+
+          <article class="app-card card-facet">
+            <div class="card-top"><span>03 / PUZZLE</span><span>게임</span></div>
+            <div class="card-art facet-art" aria-hidden="true"><div class="facet-grid"><span>1</span><span></span><span>3</span><span></span><span>2</span><span></span><span>4</span><span></span><span>1</span></div><span class="facet-cube"></span></div>
+            <div class="card-body">
+              <p class="card-kicker">Classic · Cube · Daily</p>
+              <h3 lang="en">Facet Sudoku</h3>
+              <p>클래식 격자와 연결된 큐브 퍼즐, 매일 열어 보는 한 판을 담은 스도쿠 게임입니다.</p>
+              <a class="card-link" href="/Facet/">Facet Sudoku 자세히 보기 <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+
+          <article class="app-card card-oseonro">
+            <div class="card-top"><span>04 / MUSIC</span><span>게임 · 개발 중</span></div>
+            <div class="card-art oseonro-art" aria-hidden="true"><div class="staff-lines"><span></span><span></span><span></span><span></span><span></span></div><span class="sound-path"></span><span class="sound-ball"></span></div>
+            <div class="card-body">
+              <p class="card-kicker">Draw · Ride · Play</p>
+              <h3>오선로 <span lang="en">Oseonro</span></h3>
+              <p>그린 선이 길이 되고, 길 위의 움직임이 소리가 되는 창작 리듬 게임을 만들고 있습니다.</p>
+              <a class="card-link" href="/Oseonro/">오선로 자세히 보기 <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact-section" aria-labelledby="contact-title">
+        <div><p class="eyebrow">Say hello</p><h2 id="contact-title">이야기를 나눠요.</h2><p>앱과 게임에 관한 의견이나 문의를 보내 주세요.</p></div>
+        <a class="contact-link" href="mailto:ialskdji@gmail.com">이메일 보내기 <span aria-hidden="true">↗</span></a>
+      </section>
+    </main>
+
+    <footer class="site-footer"><span>© 2026 Kim Hyeonwoo</span><span>Made with care · kugorang</span></footer>
+  </div>
 </body>
 </html>
