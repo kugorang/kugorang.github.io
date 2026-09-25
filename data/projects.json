@@ -25,7 +25,7 @@
     "platforms": ["iOS", "Android"],
     "technology": "Unity",
     "status": "개발 중",
-    "url": "https://kugorang.github.io/Sudoku/",
+    "url": "https://hw.kugora.ng/Sudoku/",
     "featured": true,
     "visual": "facet"
   },
@@ -55,7 +55,7 @@
     "platforms": ["iOS", "Android"],
     "technology": "Unity",
     "status": "개발 중",
-    "url": "https://kugorang.github.io/oseonro/",
+    "url": "https://hw.kugora.ng/oseonro/",
     "featured": false,
     "visual": "oseonro"
   }

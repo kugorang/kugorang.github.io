@@ -48,8 +48,8 @@ GitHub Pages가 `main`의 루트를 게시합니다. `CNAME`에 지정한 주소
 | --- | --- | --- |
 | 필데이 | `kugorang/Fillday` | <https://fillday.kugora.ng/> |
 | 달빛 고물상 | `kugorang/moonjunk-workshop`의 `site/` → `gh-pages` | <https://moonjunk.kugora.ng/> |
-| Facet Sudoku | `kugorang/Sudoku`의 `gh-pages` | <https://kugorang.github.io/Sudoku/> |
-| 오선로 | `kugorang/oseonro`의 `gh-pages` | <https://kugorang.github.io/oseonro/> |
+| Facet Sudoku | `kugorang/Sudoku`의 `gh-pages` | <https://hw.kugora.ng/Sudoku/> |
+| 오선로 | `kugorang/oseonro`의 `gh-pages` | <https://hw.kugora.ng/oseonro/> |
 
 별도 도메인이 없는 프로젝트 Pages는 계정 포트폴리오의 커스텀 도메인을 상속하므로,
 Facet과 오선로의 기존 주소는 `hw.kugora.ng/Sudoku/`, `hw.kugora.ng/oseonro/`로
