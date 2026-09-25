@@ -55,11 +55,11 @@ def card(item):
     search = ESC(' '.join([item['name'], item['english_name'], item['description'], item['technology'], *item['tags']]), quote=True)
     tags = ' '.join(f'<span>{ESC(tag)}</span>' for tag in item['tags'])
     return f'''<article class="project-card" data-project data-search="{search}" data-tag="{ESC(item['tags'][0], quote=True)}">
-      <a class="project-link" href="{ESC(item['url'], quote=True)}" aria-label="{title} 자세히 보기">
+      <a class="project-link" href="{ESC(item['url'], quote=True)}" aria-label="{title} 자세히 보기" aria-describedby="{ESC(item['id'], quote=True)}-description">
         {artwork(item)}
         <div class="project-copy"><div class="project-meta"><span>{ESC(item['technology'])} · {' / '.join(map(ESC, item['platforms']))}</span>{status}</div>
           <div class="project-title"><h3>{title}{english}</h3><span class="project-arrow" aria-hidden="true">↗</span></div>
-          <p class="project-headline">{ESC(item['headline'])}</p><p class="project-description">{ESC(item['description'])}</p>
+          <p class="project-headline">{ESC(item['headline'])}</p><p class="project-description" id="{ESC(item['id'], quote=True)}-description">{ESC(item['description'])}</p>
           <div class="project-tags">{tags}</div>
         </div>
       </a></article>'''

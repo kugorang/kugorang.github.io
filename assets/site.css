@@ -175,6 +175,11 @@ h1, h2, h3 { word-break: keep-all; }
 .catalog-heading h2 { font-size: .9rem; font-weight: 650; }
 .catalog-heading p { color: var(--muted); font-size: .72rem; }
 .catalog-grid { row-gap: 3rem; }
+@media (min-width: 721px) {
+  .catalog-grid > .project-card:only-child { grid-column: 1 / -1; }
+  .catalog-grid > .project-card:only-child .project-link { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; align-items: center; }
+  .catalog-grid > .project-card:only-child .project-copy { padding: .75rem 0; }
+}
 .empty-state { border: 1px dashed #c9ccbf; border-radius: 12px; padding: 4rem 1rem; text-align: center; }
 .empty-state h3 { font-size: 1.25rem; }.empty-state p { margin: .6rem 0 1.5rem; color: var(--muted); font-size: .88rem; }
 .next-collection { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.6rem; margin-bottom: 4rem; border-block: 1px solid var(--line); font-size: .84rem; }
