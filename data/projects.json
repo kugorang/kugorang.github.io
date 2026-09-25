@@ -26,7 +26,7 @@
     "technology": "Unity",
     "status": "개발 중",
     "url": "https://hw.kugora.ng/Sudoku/",
-    "featured": true,
+    "featured": false,
     "visual": "facet"
   },
   {
@@ -41,7 +41,7 @@
     "technology": "Flutter",
     "status": "개발 중",
     "url": "https://moonjunk.kugora.ng/",
-    "featured": false,
+    "featured": true,
     "visual": "moonjunk"
   },
   {
