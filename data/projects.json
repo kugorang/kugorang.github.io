@@ -1,0 +1,62 @@
+[
+  {
+    "id": "fillday",
+    "name": "필데이",
+    "english_name": "Fillday",
+    "category": "apps",
+    "headline": "하루를 채우는 나만의 리듬.",
+    "description": "일정과 할 일, 하루의 마음을 한 흐름에 담는 플래너. 흩어진 기록을 모으고, 내가 채운 하루를 차분히 돌아봅니다.",
+    "tags": ["일정", "할 일", "기록"],
+    "platforms": ["iOS", "Android"],
+    "technology": "Flutter",
+    "status": "",
+    "url": "https://fillday.kugora.ng/",
+    "featured": true,
+    "visual": "fillday"
+  },
+  {
+    "id": "facet",
+    "name": "Facet Sudoku",
+    "english_name": "",
+    "category": "games",
+    "headline": "익숙한 숫자, 새로운 관점.",
+    "description": "클래식 스도쿠에서 서로 연결된 큐브 퍼즐까지. 한 면의 단서가 다른 면의 답이 되는 순간을 발견하고, 매일 한 판의 집중을 즐깁니다.",
+    "tags": ["퍼즐", "스도쿠", "데일리"],
+    "platforms": ["iOS", "Android"],
+    "technology": "Unity",
+    "status": "개발 중",
+    "url": "https://kugorang.github.io/Sudoku/",
+    "featured": true,
+    "visual": "facet"
+  },
+  {
+    "id": "moonjunk",
+    "name": "달빛 고물상",
+    "english_name": "Moonjunk Workshop",
+    "category": "games",
+    "headline": "고치는 물건마다, 이어지는 이야기.",
+    "description": "잊힌 물건을 수선하며 소포에 남은 이야기를 만나는 모바일 게임. 작은 수선공과 함께 긴 밤길의 사연을 하나씩 이어 갑니다.",
+    "tags": ["스토리", "수집", "수선"],
+    "platforms": ["iOS", "Android"],
+    "technology": "Flutter",
+    "status": "개발 중",
+    "url": "https://moonjunk.kugora.ng/",
+    "featured": false,
+    "visual": "moonjunk"
+  },
+  {
+    "id": "oseonro",
+    "name": "오선로",
+    "english_name": "Oseonro",
+    "category": "games",
+    "headline": "내가 그린 길에서 시작되는 음악.",
+    "description": "손으로 그린 선이 길이 되고, 길 위의 움직임이 소리로 이어지는 창작 리듬 게임. 그리고, 달리고, 다시 그리며 나만의 흐름을 만듭니다.",
+    "tags": ["리듬", "창작", "샌드박스"],
+    "platforms": ["iOS", "Android"],
+    "technology": "Unity",
+    "status": "개발 중",
+    "url": "https://kugorang.github.io/oseonro/",
+    "featured": false,
+    "visual": "oseonro"
+  }
+]
