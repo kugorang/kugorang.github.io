@@ -134,7 +134,8 @@ def build(check=False):
     output = {
         'index.html': page('김현우 · Hyeonwoo Kim — 앱과 게임을 만듭니다', '김현우의 포트폴리오. 일상을 위한 앱과 호기심을 위한 게임, 직접 만든 작업을 소개합니다.', '/', home(items), 'home'),
         'apps/index.html': page('앱 · 김현우의 포트폴리오', '일정과 기록처럼 매일 반복되는 일을 조금 더 편하게. 김현우가 만든 앱을 만나보세요.', '/apps/', collection(items, 'apps'), 'apps'),
-        'games/index.html': page('게임 · 김현우의 포트폴리오', 'Facet Sudoku, 달빛 고물상, 오선로. 김현우가 만드는 게임과 새로운 놀이를 소개합니다.', '/games/', collection(items, 'games'), 'games'),
+        'games/index.html': page('게임 · 김현우의 포트폴리오', 'Facet, 달빛 고물상, 오선로. 김현우가 만드는 게임과 새로운 놀이를 소개합니다.', '/games/', collection(items, 'games'), 'games'),
+        'Facet/index.html': '<!doctype html>\n<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="refresh" content="0; url=https://facet.kugora.ng/"><link rel="canonical" href="https://facet.kugora.ng/"><title>Facet</title></head><body><p><a href="https://facet.kugora.ng/">Facet 홈페이지로 이동</a></p></body></html>\n',
         '404.html': page('페이지를 찾을 수 없어요 · 김현우', '김현우의 앱과 게임 포트폴리오로 돌아가세요.', '/404.html', '<section class="not-found wrap"><p class="eyebrow">404 / A SMALL DETOUR</p><h1>여기엔 아직<br>아무것도 없네요.</h1><p>주소를 다시 확인하거나, 다른 작업을 둘러보세요.</p><a class="button button-blue" href="/">메인으로 돌아가기 ↗</a></section>', ''),
         'robots.txt': f'User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n',
         'sitemap.xml': '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{SITE}{path}</loc></url>\n' for path in ('/', '/apps/', '/games/')) + '</urlset>\n',

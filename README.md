@@ -48,11 +48,14 @@ GitHub Pages가 `main`의 루트를 게시합니다. `CNAME`에 지정한 주소
 | --- | --- | --- |
 | 필데이 | `kugorang/Fillday` | <https://fillday.kugora.ng/> |
 | 달빛 고물상 | `kugorang/moonjunk-workshop`의 `site/` → `gh-pages` | <https://moonjunk.kugora.ng/> |
-| Facet Sudoku | `kugorang/Sudoku`의 `gh-pages` | <https://hw.kugora.ng/Sudoku/> |
+| Facet | `kugorang/Sudoku`의 `gh-pages` | <https://facet.kugora.ng/> |
 | 오선로 | `kugorang/oseonro`의 `gh-pages` | <https://hw.kugora.ng/oseonro/> |
 
-별도 도메인이 없는 프로젝트 Pages는 계정 포트폴리오의 커스텀 도메인을 상속하므로,
-Facet과 오선로의 기존 주소는 `hw.kugora.ng/Sudoku/`, `hw.kugora.ng/oseonro/`로
-이동합니다. 게시 소스는 계속 각각의 저장소입니다.
+Facet의 공식 공개 주소는 `facet.kugora.ng`이며 작품 카드도 직접 연결합니다.
+`/Facet/`는 기존 링크를 위한 이동 페이지입니다. 기존 `/Sudoku/`는 GitHub Pages가
+공식 주소로 이동시킵니다. 저장소 이름을 신규 공개 링크에 사용하지 않습니다.
+오선로는 기존 `hw.kugora.ng/oseonro/`에서 별도 저장소가 게시합니다.
 
 `app-ads.txt`는 광고 공급자 확인에 사용하므로 유지합니다. 앱 소스, 인증 정보, 비공개 개발 문서는 게시하지 않습니다.
+
+미출시 작품은 브랜드, 짧은 소개와 개발 중 표시를 중심으로 소개합니다. 테스트 빌드 번호, 구매·광고 검증 상태와 내부 운영 계획은 공개 소개에 넣지 않습니다.
