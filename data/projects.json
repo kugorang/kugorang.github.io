@@ -9,10 +9,14 @@
     "tags": ["일정", "할 일", "기록"],
     "platforms": ["iOS", "Android"],
     "technology": "Flutter",
-    "status": "",
+    "status": "released",
     "url": "https://fillday.kugora.ng/",
     "featured": true,
-    "visual": "fillday"
+    "visual": "fillday",
+    "stores": {
+      "App Store": "https://apps.apple.com/app/id6797272470",
+      "Google Play": "https://play.google.com/store/apps/details?id=com.kugorang.fillday"
+    }
   },
   {
     "id": "facet",
@@ -24,9 +28,9 @@
     "tags": ["퍼즐", "스도쿠"],
     "platforms": ["iOS", "Android"],
     "technology": "Unity",
-    "status": "개발 중",
+    "status": "development",
     "url": "https://facet.kugora.ng/",
-    "featured": false,
+    "featured": true,
     "visual": "facet"
   },
   {
@@ -39,9 +43,9 @@
     "tags": ["스토리", "수집", "수선"],
     "platforms": ["iOS", "Android"],
     "technology": "Flutter",
-    "status": "개발 중",
+    "status": "development",
     "url": "https://moonjunk.kugora.ng/",
-    "featured": true,
+    "featured": false,
     "visual": "moonjunk"
   },
   {
@@ -54,7 +58,7 @@
     "tags": ["리듬", "창작", "샌드박스"],
     "platforms": ["iOS", "Android"],
     "technology": "Unity",
-    "status": "개발 중",
+    "status": "development",
     "url": "https://hw.kugora.ng/oseonro/",
     "featured": false,
     "visual": "oseonro"

@@ -17,7 +17,11 @@
       card.hidden = !matches;
       if (matches) visible++;
     }
-    count.textContent = `${visible}개의 작업${visible === cards.length ? '' : ` / 전체 ${cards.length}개`}`;
+    const template = visible === cards.length ? catalog.dataset.countAll : catalog.dataset.countFiltered;
+    count.textContent = template.replace('{count}', visible).replace('{total}', cards.length);
+    for (const group of catalog.querySelectorAll('[data-release-group]')) {
+      group.hidden = ![...group.querySelectorAll('[data-project]')].some(card => !card.hidden);
+    }
     empty.hidden = visible !== 0;
     for (const button of filters) button.setAttribute('aria-pressed', String(button.dataset.filter === tag));
   }

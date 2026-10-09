@@ -63,3 +63,48 @@ Facet의 공식 공개 주소는 `facet.kugora.ng`이며 작품 카드도 직접
 `app-ads.txt`는 광고 공급자 확인에 사용하므로 유지합니다. 앱 소스, 인증 정보, 비공개 개발 문서는 게시하지 않습니다.
 
 미출시 작품은 브랜드, 짧은 소개와 개발 중 표시를 중심으로 소개합니다. 테스트 빌드 번호, 구매·광고 검증 상태와 내부 운영 계획은 공개 소개에 넣지 않습니다.
+
+## 언어와 공개 상태
+
+웹은 Fillday의 실제 선택 언어 `ko/en/ja`와 Facet의 실제 선택 언어
+`ko-KR/en-US/ja-JP/de-DE/fr-FR/es/pt-BR`의 합집합을 지원합니다.
+Facet의 스토어 메타에서 스페인어 지역을 나누더라도 웹의 `es`는 공통 스페인어입니다.
+언어 이름과 URL 코드는 `data/languages.json`, 문구는 `data/locales/*.json`에 있습니다.
+번역 키·자리표시자가 누락되거나 개발 중 작업에 설치 링크를 넣으면 빌드가 실패합니다.
+작품의 한국어 `headline`·`description`을 수정할 때 한국어 locale과 나머지 번역도 함께 수정합니다.
+이름·기존 영문 브랜드·지원 이메일·도메인·저작권 표기는 번역하지 않습니다.
+
+- 직접 링크: `/ko/`, `/en/`, `/ja/`, `/de/`, `/fr/`, `/es/`, `/pt-BR/`.
+- 각 언어 아래 `/apps/`, `/games/`, `/404.html`, 기존 `/Facet/` 이동 페이지가 있습니다.
+- 기존 `/`, `/apps/`, `/games/`는 보존됩니다. JavaScript를 사용하면 URL의 `lang` 파라미터,
+  저장된 선택, 브라우저의 첫 지원 언어, 영어 순서로 언어 URL을 선택합니다.
+- 직접 언어 URL은 브라우저·저장된 설정보다 우선합니다. 언어 메뉴는 현재 페이지·query·anchor를 유지합니다.
+- JavaScript 없이도 언어별 내용과 언어 선택 링크를 사용할 수 있습니다.
+- canonical은 각 언어 URL, hreflang은 모든 언어와 기존 URL의 `x-default`를 연결합니다.
+- 언어 메뉴는 기본 HTML `details`로 구현했으며 Enter/Space/Tab과 Escape를 지원합니다.
+
+`data/projects.json`의 `status`는 `released` 또는 `development`입니다.
+`stores`는 실제 공개된 작업에만 추가하며 공식 App Store·Google Play 주소만 허용합니다.
+메인 대표 작업은 Fillday와 Facet입니다. Facet은 대표 작업이어도 개발 중 상태이며,
+달빛 고물상과 오선로는 개발 중 목록에서 유지합니다. 확정되지 않은 출시일은 표시하지 않습니다.
+
+## 검증
+
+```sh
+python3 -B scripts/build.py --check
+python3 -B -m unittest discover -s tests -v
+node --check assets/catalog.js
+node --check assets/language.js
+git diff --check
+python3 -B tests/serve.py
+```
+
+`tests/serve.py`는 `http://127.0.0.1:4174/`에서 GitHub Pages의 사용자 정의 404도 재현합니다.
+`tests/browser-qa.cjs`는 Playwright와 기존 Mac Chrome을 사용한 선택적 화면 검사입니다.
+QA 출력은 `QA_OUTPUT_ROOT`, 별도 설치 Playwright는 `QA_PLAYWRIGHT_MODULE`로 지정합니다.
+프로젝트 소스·앱 저장소에는 QA 패키지나 브라우저 프로필을 설치하지 않습니다.
+Mac mini에서는 T7 APFS UUID를 먼저 검증하고 임시파일·스크린샷·증거를 전용 외장 경로에 둡니다.
+
+게시 방법은 기존 `main` 루트의 GitHub Pages이며 도메인·계정·스택은 바꾸지 않습니다.
+검토된 소스와 생성 HTML을 함께 반영해야 합니다. 이번 변경의 push와 공개 게시에는
+이 작업에 대한 별도 승인이 필요합니다.
