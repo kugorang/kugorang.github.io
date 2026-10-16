@@ -26,7 +26,7 @@ async function context(options={}) {
   const ctx = await context({locale:'en-US'});
   const page = await ctx.newPage();
   for (const code of locales) {
-    for (const route of ['/', '/apps/', '/games/', '/404.html']) {
+    for (const route of ['/', '/apps/', '/games/', '/apps/caketogether/', '/404.html']) {
       for (const width of [320,390,768,1024,1440]) {
         await test(`layout ${code}${route} width=${width}`, async () => {
           await page.setViewportSize({width,height:900});
@@ -48,8 +48,8 @@ async function context(options={}) {
           assert.equal(await page.locator(`[data-language="${code}"]`).getAttribute('aria-current'),'true');
           await page.keyboard.press('Escape');
           assert.equal(await page.locator('.language-picker').getAttribute('open'),null);
-          if (route==='/' || route==='/games/') {
-            if ([320,1440].includes(width)) await page.screenshot({path:path.join(output,`${code}-${route==='/'?'home':'games'}-${width}.png`),fullPage:true});
+          if (route==='/' || route==='/games/' || route==='/apps/caketogether/') {
+            if ([320,1440].includes(width)) await page.screenshot({path:path.join(output,`${code}-${route==='/'?'home':route==='/games/'?'games':'caketogether'}-${width}.png`),fullPage:true});
           }
         });
       }
@@ -84,6 +84,26 @@ async function context(options={}) {
       assert.equal(await page.getAttribute('html','lang'),code);
       await page.goto(base+'/apps/');
       assert.equal(new URL(page.url()).pathname,'/'+code+'/apps/');
+    });
+    await test(`concept discovery, language links and large text ${code}`, async () => {
+      await page.goto(base+'/'+code+'/apps/');
+      await page.locator('input[type=search]').fill('CakeTogether');
+      assert.equal(await page.locator('[data-project]:visible').count(),1);
+      assert.equal(await page.locator('[data-release-group]:visible').count(),1);
+      assert.equal(await page.locator('[data-project]:visible').getAttribute('data-status'),'concept');
+      await page.locator('[data-project]:visible .project-link').click();
+      assert.equal(new URL(page.url()).pathname,'/'+code+'/apps/caketogether/');
+      assert.equal(await page.locator('h1').textContent(),'CakeTogether');
+      assert.equal(await page.locator('.concept-note').textContent(),messages[code]['cake.note']);
+      assert.equal(await page.locator('.store-link,form,input,button').count(),0);
+      await page.locator('.language-picker summary').click();
+      for (const other of locales) assert.equal(await page.locator(`[data-language="${other}"]`).getAttribute('href'),base+'/'+other+'/apps/caketogether/');
+      await page.keyboard.press('Escape');
+      await page.setViewportSize({width:320,height:900});
+      await page.addStyleTag({content:'html {font-size:200% !important}'});
+      await page.evaluate(() => document.fonts.ready);
+      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth>innerWidth+1),false);
+      await page.screenshot({path:path.join(output,`${code}-caketogether-320-large-text.png`),fullPage:true});
     });
   }
   await test('keyboard skip link and language menu', async () => {
@@ -147,8 +167,12 @@ async function context(options={}) {
       assert.equal(await p.locator('[data-project]').count(),3);
       await p.locator('.language-picker summary').click();
       assert.equal(await p.locator('[data-language]:visible').count(),7);
+      await p.goto(base+'/'+code+'/apps/caketogether/');
+      assert.equal(await p.locator('.concept-note').textContent(),messages[code]['cake.note']);
+      await p.locator('.language-picker summary').click();
+      assert.equal(await p.locator('[data-language]:visible').count(),7);
     }
-    await p.locator('[data-language="ja"]').click();assert.equal(new URL(p.url()).pathname,'/ja/games/');
+    await p.locator('[data-language="ja"]').click();assert.equal(new URL(p.url()).pathname,'/ja/apps/caketogether/');
     await c.close();
   });
   assert.deepEqual(errors,[]);

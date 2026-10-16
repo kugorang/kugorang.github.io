@@ -7,6 +7,7 @@
 | `/` | 프로필, 대표 작업, 소개, 연락처 |
 | `/apps/` | 앱 목록과 검색·분야 필터 |
 | `/games/` | 게임 목록과 검색·분야 필터 |
+| `/apps/caketogether/` | 기획 중인 CakeTogether의 공개용 개념 요약 |
 
 ## 작품 추가 및 수정
 
@@ -83,10 +84,18 @@ Facet의 스토어 메타에서 스페인어 지역을 나누더라도 웹의 `e
 - canonical은 각 언어 URL, hreflang은 모든 언어와 기존 URL의 `x-default`를 연결합니다.
 - 언어 메뉴는 기본 HTML `details`로 구현했으며 Enter/Space/Tab과 Escape를 지원합니다.
 
-`data/projects.json`의 `status`는 `released` 또는 `development`입니다.
+`data/projects.json`의 `status`는 `released`, `development`, `concept`입니다.
 `stores`는 실제 공개된 작업에만 추가하며 공식 App Store·Google Play 주소만 허용합니다.
 메인 대표 작업은 Fillday와 Facet입니다. Facet은 대표 작업이어도 개발 중 상태이며,
 달빛 고물상과 오선로는 개발 중 목록에서 유지합니다. 확정되지 않은 출시일은 표시하지 않습니다.
+
+CakeTogether는 `concept`(기획 중)으로 구분합니다. 2026-10-11 통합 기획서 v2.0의
+선물 준비·참여 약속·축하 카드 구상만 간단히 소개하며 실행 앱이나 출시 확정으로 표현하지 않습니다.
+기획 요약은 포트폴리오에서 관리하고, 향후 실제 서비스의 지원·정책·운영 페이지는 별도로 관리합니다.
+신규 요약도 7개 언어로 정적 생성하며 언어 메뉴가 현재 요약 페이지를 유지합니다.
+플랫폼 순서가 미확정이므로 플랫폼 목록·설치 링크를 넣지 않습니다.
+기획서의 가상 수치·가격·인증 및 운영 상세·원본 PDF·참고 삽화는 게시하지 않습니다.
+케이크 장식은 이 사이트에서 새로 작성한 CSS입니다.
 
 ## 검증
 
@@ -103,7 +112,8 @@ python3 -B tests/serve.py
 `tests/browser-qa.cjs`는 Playwright와 기존 Mac Chrome을 사용한 선택적 화면 검사입니다.
 QA 출력은 `QA_OUTPUT_ROOT`, 별도 설치 Playwright는 `QA_PLAYWRIGHT_MODULE`로 지정합니다.
 프로젝트 소스·앱 저장소에는 QA 패키지나 브라우저 프로필을 설치하지 않습니다.
-Mac mini에서는 T7 APFS UUID를 먼저 검증하고 임시파일·스크린샷·증거를 전용 외장 경로에 둡니다.
+Mac mini에서는 임시파일·스크린샷·증거를 작업별 내부 폴더에 둡니다.
+완료 증거의 외장 보관은 선택 사본이며 실행에 외장 디스크가 필요하지 않습니다.
 
 게시 방법은 기존 `main` 루트의 GitHub Pages이며 도메인·계정·스택은 바꾸지 않습니다.
 검토된 소스와 생성 HTML을 함께 반영해야 합니다. 이번 변경의 push와 공개 게시에는

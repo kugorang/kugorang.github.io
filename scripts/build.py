@@ -14,7 +14,7 @@ ESC = html.escape
 ARROW = '<span aria-hidden="true">↗</span>'
 LANGUAGES = json.loads((ROOT / 'data/languages.json').read_text())
 CODES = [x['code'] for x in LANGUAGES]
-ROUTES = {'home': '/', 'apps': '/apps/', 'games': '/games/', '404': '/404.html'}
+ROUTES = {'home': '/', 'apps': '/apps/', 'games': '/games/', 'caketogether': '/apps/caketogether/', '404': '/404.html'}
 
 
 def translations():
@@ -40,7 +40,7 @@ def catalog():
         if item['id'] in ids or not re.fullmatch(r'[a-z0-9-]+', item['id']):
             raise ValueError(f'Invalid or duplicate id: {item["id"]}')
         ids.add(item['id'])
-        if item['category'] not in ('apps', 'games') or item['status'] not in ('released', 'development'):
+        if item['category'] not in ('apps', 'games') or item['status'] not in ('released', 'development', 'concept'):
             raise ValueError(f'Invalid category or status: {item["id"]}')
         url = urlparse(item['url'])
         if url.scheme != 'https' or not url.netloc or not isinstance(item['tags'], list) or not item['tags']:
@@ -84,13 +84,16 @@ def artwork(item, t):
         content = f'<span class="moon"></span><span class="star star-one">✦</span><span class="star star-two">✧</span><div class="parcel"><span>{t("art.parcel")}</span><i>☾</i></div><span class="art-sticker">{t("art.moonjunk")}</span>'
     elif visual == 'oseonro':
         content = '<div class="music-lines">' + '<i></i>' * 5 + f'</div><div class="music-path"></div><span class="music-ball"></span><span class="music-note">♪</span><span class="art-sticker">{t("art.oseonro")}</span>'
+    elif visual == 'caketogether':
+        # Original CSS decoration; no reference artwork or mockup is republished.
+        content = f'<div class="cake-decoration"><span class="cake-candle"></span><span class="cake-top"></span><span class="cake-base"></span><span class="cake-plate"></span></div><span class="art-sticker">{t("art.caketogether")}</span>'
     else:
         visual = 'default'
         content = f'<span class="project-initial">{ESC(item["name"][0])}</span>'
     return f'<div class="project-art art-{visual}" aria-hidden="true">{content}</div>'
 
 
-def card(item, t):
+def card(item, t, code):
     title = ESC(item['name'])
     if re.search('[가-힣]', item['name']):
         title = f'<span lang="ko">{title}</span>'
@@ -99,9 +102,10 @@ def card(item, t):
     search = ESC(' '.join([item['name'], item['english_name'], t.raw(item['id'] + '.description'), item['technology'], *[t.raw('tag.' + x) for x in item['tags']]]), quote=True)
     tags = ' '.join(f'<span>{t("tag." + tag)}</span>' for tag in item['tags'])
     stores = ''.join(f'<a class="button button-outline store-link" href="{ESC(address, quote=True)}" aria-label="{t("cta.store.label", name=item["name"], store=store)}">{t("cta.store", store=store)} {ARROW}</a>' for store, address in item.get('stores', {}).items())
+    detail_url = path_for(code, ROUTES['caketogether']) if item['id'] == 'caketogether' else item['url']
     return f'''<article class="project-card" data-project data-status="{item['status']}" data-search="{search}" data-tag="{ESC(item['tags'][0], quote=True)}">
-      <a class="project-link" href="{ESC(item['url'], quote=True)}" aria-label="{t('cta.detail.label', name=item['name'])}" aria-describedby="{item['id']}-description">
-        {artwork(item, t)}<div class="project-copy"><div class="project-meta"><span>{ESC(item['technology'])} · {' / '.join(map(ESC, item['platforms']))}</span><span class="status status-{item['status']}">{t('status.' + item['status'])}</span></div>
+      <a class="project-link" href="{ESC(detail_url, quote=True)}" aria-label="{t('cta.detail.label', name=item['name'])}" aria-describedby="{item['id']}-description">
+        {artwork(item, t)}<div class="project-copy"><div class="project-meta"><span>{ESC(item['technology'])}{' · ' + ' / '.join(map(ESC, item['platforms'])) if item['platforms'] else ''}</span><span class="status status-{item['status']}">{t('status.' + item['status'])}</span></div>
         <div class="project-title"><h3>{title}{english}</h3><span class="project-arrow" aria-hidden="true">↗</span></div>
         <p class="project-headline">{t(item['id'] + '.headline')}</p><p class="project-description" id="{item['id']}-description">{t(item['id'] + '.description')}</p><div class="project-tags">{tags}</div><span class="detail-cta">{t('cta.detail')} {ARROW}</span></div>
       </a>{f'<div class="store-links">{stores}</div>' if stores else ''}</article>'''
@@ -109,7 +113,8 @@ def card(item, t):
 
 def page(active, route, body, code, t, default=False):
     title, description = t('meta.' + active + '.title'), t('meta.' + active + '.desc')
-    nav = ''.join(f'<a href="{path_for(code, ROUTES[key])}"' + (' aria-current="page"' if active == key else '') + f'>{t("nav." + key)}</a>' for key in ('home', 'apps', 'games'))
+    nav_active = 'apps' if active == 'caketogether' else active
+    nav = ''.join(f'<a href="{path_for(code, ROUTES[key])}"' + (' aria-current="page"' if nav_active == key else '') + f'>{t("nav." + key)}</a>' for key in ('home', 'apps', 'games'))
     canonical = SITE + path_for(code, route)
     alternates = ''.join(f'<link rel="alternate" hreflang="{x}" href="{SITE}{path_for(x, route)}">' for x in CODES)
     languages = ''.join(f'<a href="{path_for(x["code"], route)}" lang="{x["code"]}" hreflang="{x["code"]}" data-language="{x["code"]}"' + (' aria-current="true"' if x['code'] == code else '') + f'>{ESC(x["label"])}</a>' for x in LANGUAGES)
@@ -144,7 +149,7 @@ def contact(t):
 
 def home(items, code, t):
     counts = {category: sum(x['category'] == category for x in items) for category in ('apps', 'games')}
-    featured = ''.join(card(x, t) for x in items if x['featured'])
+    featured = ''.join(card(x, t, code) for x in items if x['featured'])
     collections = ''.join(f'<a class="collection-link" href="{path_for(code, ROUTES[category])}"><span class="collection-index">{t(category + ".index")}</span><div><h2>{t(category + ".shorttitle")}</h2><p>{t(category + ".shortdesc")}</p></div><span class="collection-count">{t(category + ".count", count=f"{counts[category]:02d}")}</span>{ARROW}</a>' for category in ('apps', 'games'))
     return f'''<section class="hero wrap" aria-labelledby="hero-title"><div class="hero-copy"><p class="eyebrow"><span class="little-star" aria-hidden="true">✳</span> {t('hero.eyebrow')}</p><h1 id="hero-title">{t('hero.first')}<br><span>{t('hero.second')}</span></h1><p class="hero-intro">{t.lines('hero.intro')}</p><div class="hero-actions"><a class="button button-blue" href="{path_for(code, '/apps/')}">{t('cta.apps')} {ARROW}</a><a class="button button-outline" href="{path_for(code, '/games/')}">{t('cta.games')} {ARROW}</a></div><p class="hero-note"><span aria-hidden="true">↳</span> {t('hero.note')}</p></div>
     <figure class="portrait"><div class="portrait-frame"><img src="/assets/profile.png" width="2048" height="2048" alt="{t('profile.alt')}" fetchpriority="high"></div><figcaption><span>KIM HYEONWOO</span><span>{t('profile.alias')} {ARROW}</span></figcaption><span class="portrait-label" aria-hidden="true">{t('profile.sticker')}</span></figure></section>
@@ -158,10 +163,10 @@ def collection(items, category, code, t):
     tags = list(dict.fromkeys(x['tags'][0] for x in filtered))
     buttons = '<button type="button" class="filter-chip" data-filter="" aria-pressed="true">' + t('filter.all') + '</button>' + ''.join(f'<button type="button" class="filter-chip" data-filter="{ESC(tag, quote=True)}" aria-pressed="false">{t("tag." + tag)}</button>' for tag in tags)
     groups = ''
-    for status in ('released', 'development'):
+    for status in ('released', 'development', 'concept'):
         projects = [x for x in filtered if x['status'] == status]
         if projects:
-            groups += f'<section class="release-group" data-release-group aria-labelledby="{status}-title"><div class="release-heading"><h2 id="{status}-title">{t("status." + status)}</h2><p>{t("status." + status + ".desc")}</p></div><div class="project-grid catalog-grid">' + ''.join(card(x, t) for x in projects) + '</div></section>'
+            groups += f'<section class="release-group" data-release-group aria-labelledby="{status}-title"><div class="release-heading"><h2 id="{status}-title">{t("status." + status)}</h2><p>{t("status." + status + ".desc")}</p></div><div class="project-grid catalog-grid">' + ''.join(card(x, t, code) for x in projects) + '</div></section>'
     other = 'games' if category == 'apps' else 'apps'
     return f'''<section class="collection-hero wrap" aria-labelledby="page-title"><p class="eyebrow">{t(category + '.eyebrow')}</p><div class="collection-hero-row"><h1 id="page-title">{t.lines(category + '.title')}</h1><div><span class="collection-total">{len(filtered):02d}</span><p>{t(category + '.desc')}</p></div></div></section>
     <section class="catalog-section wrap" data-catalog data-count-all="{t('count.all', count='{count}')}" data-count-filtered="{t('count.filtered', count='{count}', total='{total}')}" aria-label="{t(category + '.list')}"><div class="catalog-tools" hidden><div class="filters" role="group" aria-label="{t('filter.label')}">{buttons}</div><label class="search-field"><span class="sr-only">{t('search.label')}</span><span aria-hidden="true">⌕</span><input type="search" placeholder="{t('search.placeholder')}" aria-controls="project-list" autocomplete="off"></label></div><div class="catalog-heading"><p data-result-count role="status" aria-live="polite">{t('count.all', count=len(filtered))}</p></div><div id="project-list">{groups}</div><div class="empty-state" hidden><h2>{t('empty.title')}</h2><p>{t('empty.desc')}</p><button type="button" class="button button-outline" data-reset>{t('empty.reset')}</button></div></section>
@@ -172,13 +177,23 @@ def not_found(code, t):
     return f'<section class="not-found wrap"><p class="eyebrow">{t("404.eyebrow")}</p><h1>{t.lines("404.title")}</h1><p>{t("404.desc")}</p><a class="button button-blue" href="{path_for(code, "/")}">{t("404.home")} {ARROW}</a></section>'
 
 
+def caketogether(items, code, t):
+    item = next(x for x in items if x['id'] == 'caketogether')
+    steps = ''.join(f'<li><span class="concept-step-number" aria-hidden="true">0{n}</span><h3>{t(f"cake.step{n}.title")}</h3><p>{t(f"cake.step{n}.desc")}</p></li>' for n in range(1, 4))
+    return f'''<section class="concept-hero wrap" aria-labelledby="page-title"><div><p class="eyebrow">{t('status.concept')} · {t('cake.workingname')}</p><h1 id="page-title">CakeTogether</h1><p class="concept-subtitle">{t('caketogether.headline')}</p><p>{t('caketogether.description')}</p><p class="concept-note">{t('cake.note')}</p></div>{artwork(item, t)}</section>
+    <section class="concept-boundary wrap" aria-labelledby="boundary-title"><h2 id="boundary-title">{t('cake.boundary.title')}</h2><p>{t('cake.boundary.desc')}</p></section>
+    <section class="concept-flow wrap" aria-labelledby="flow-title"><h2 id="flow-title">{t('cake.steps.title')}</h2><ol class="concept-steps">{steps}</ol></section>
+    <section class="concept-principles wrap" aria-labelledby="privacy-title"><h2 id="privacy-title">{t('cake.privacy.title')}</h2><div><p>{t('cake.privacy.desc')}</p><p>{t('cake.scope')}</p></div></section>
+    <div class="concept-back wrap"><a class="button button-outline" href="{path_for(code, '/apps/')}">{t('cake.back')} {ARROW}</a></div>'''
+
+
 def output_files():
     items, texts = catalog(), translations()
     output = {}
     for code in CODES:
         t = Copy(texts[code])
         for key, route in ROUTES.items():
-            body = home(items, code, t) if key == 'home' else not_found(code, t) if key == '404' else collection(items, key, code, t)
+            body = home(items, code, t) if key == 'home' else not_found(code, t) if key == '404' else caketogether(items, code, t) if key == 'caketogether' else collection(items, key, code, t)
             filename = route.lstrip('/') + ('index.html' if route.endswith('/') else '')
             output[f'{code}/{filename}'] = page(key, route, body, code, t)
             if code == 'ko':
@@ -189,7 +204,7 @@ def output_files():
             output['Facet/index.html'] = redirect
     output['robots.txt'] = f'User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n'
     urls = []
-    for route in ('/', '/apps/', '/games/'):
+    for route in ('/', '/apps/', '/games/', ROUTES['caketogether']):
         alternatives = ''.join(f'<xhtml:link rel="alternate" hreflang="{code}" href="{SITE}{path_for(code, route)}"/>' for code in CODES) + f'<xhtml:link rel="alternate" hreflang="x-default" href="{SITE}{route}"/>'
         for code in CODES:
             urls.append(f'  <url><loc>{SITE}{path_for(code, route)}</loc>{alternatives}</url>')

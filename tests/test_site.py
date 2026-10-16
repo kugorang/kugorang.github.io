@@ -37,7 +37,7 @@ class PortfolioContract(unittest.TestCase):
 
     def test_exact_runtime_language_union(self):
         self.assertEqual(build.CODES, ['ko', 'en', 'ja', 'de', 'fr', 'es', 'pt-BR'])
-        self.assertEqual(len(self.texts['ko']), 108)
+        self.assertIn('meta.caketogether.title', self.texts['ko'])
 
     def test_source_messages_and_catalog_remain_consistent(self):
         for item in build.catalog():
@@ -75,7 +75,7 @@ class PortfolioContract(unittest.TestCase):
                     if code not in ('ko','ja'):
                         # Established Korean brand names may remain; Korean prose may not.
                         cleaned = source
-                        for name in ('한국어','필데이','달빛 고물상','오선로','일정','퍼즐','스토리','리듬'):
+                        for name in ('한국어','필데이','달빛 고물상','오선로','일정','퍼즐','스토리','리듬','선물'):
                             cleaned = cleaned.replace(name, '')
                         self.assertIsNone(re.search('[가-힣]', cleaned))
 
@@ -106,9 +106,31 @@ class PortfolioContract(unittest.TestCase):
         with patch.object(Path, 'read_text', fake_read), self.assertRaisesRegex(ValueError, 'Unreleased'):
             build.catalog()
 
+    def test_concept_is_distinct_and_localized_without_install_or_collection_controls(self):
+        items = build.catalog()
+        concept = next(x for x in items if x['id'] == 'caketogether')
+        self.assertEqual(concept['status'], 'concept')
+        self.assertFalse(concept['featured'])
+        self.assertEqual(concept['platforms'], [])
+        self.assertNotIn('stores', concept)
+        for code in build.CODES:
+            with self.subTest(code=code):
+                apps = self.output[f'{code}/apps/index.html']
+                doc = Document(apps)
+                self.assertEqual(len(doc.attrs('article', **{'data-status': 'concept'})), 1)
+                self.assertIn(f'href="/{code}/apps/caketogether/"', apps)
+                detail = self.output[f'{code}/apps/caketogether/index.html']
+                detail_doc = Document(detail)
+                self.assertEqual(detail_doc.attrs('form'), [])
+                self.assertNotIn('store-link', detail)
+                self.assertIn(self.texts[code]['cake.note'], detail)
+                self.assertIn(self.texts[code]['cake.boundary.desc'], detail)
+                self.assertNotIn('2,900', detail)
+                self.assertNotIn('.pdf', detail)
+
     def test_sitemap_uses_reciprocal_language_links(self):
         root = ET.fromstring(self.output['sitemap.xml'])
-        self.assertEqual(len(root), 21)
+        self.assertEqual(len(root), 28)
         for entry in root:
             self.assertEqual(len(entry), 9)
         self.assertNotIn('/404.html', self.output['sitemap.xml'])

@@ -19,6 +19,21 @@
     }
   },
   {
+    "id": "caketogether",
+    "name": "CakeTogether",
+    "english_name": "",
+    "category": "apps",
+    "headline": "선물은 함께 준비하고, 축하는 오래 간직해요.",
+    "description": "친구들과 생일 선물을 준비하며 참여 약속과 축하를 한곳에 모으는 앱 기획. 실제 돈과 선물 전달은 앱 밖에서 진행하는 구상입니다.",
+    "tags": ["선물", "축하"],
+    "platforms": [],
+    "technology": "Flutter",
+    "status": "concept",
+    "url": "https://hw.kugora.ng/apps/caketogether/",
+    "featured": false,
+    "visual": "caketogether"
+  },
+  {
     "id": "facet",
     "name": "Facet",
     "english_name": "",
