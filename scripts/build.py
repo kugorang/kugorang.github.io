@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the existing portfolio and complete localized static pages."""
+"""Generate Kugorang's localized app and game site."""
 import argparse
 import html
 import json
@@ -10,6 +10,7 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = 'https://hw.kugora.ng'
+CONTACT = 'hw@kugora.ng'
 ESC = html.escape
 ARROW = '<span aria-hidden="true">↗</span>'
 LANGUAGES = json.loads((ROOT / 'data/languages.json').read_text())
@@ -134,17 +135,17 @@ def page(active, route, body, code, t, default=False):
 </head>
 <body>
   <a class="skip-link" href="#main">{t('nav.skip')}</a>
-  <header class="site-header wrap"><a class="brand" href="{path_for(code, '/')}" aria-label="{t('nav.brand')}"><span class="brand-mark">hw<span>.</span></span><span class="brand-name">Hyeonwoo Kim<small>{t('nav.role')}</small></span></a>
-    <nav class="site-nav" aria-label="{t('nav.label')}">{nav}</nav><div class="header-tools"><a class="header-contact" href="mailto:ialskdji@gmail.com">{t('nav.contact')} {ARROW}</a><details class="language-picker"><summary><span class="sr-only">{t('nav.language')}: </span>{ESC(label)} <span aria-hidden="true">⌄</span></summary><nav class="language-options" aria-label="{t('nav.language')}">{languages}</nav></details></div></header>
+  <header class="site-header wrap"><a class="brand" href="{path_for(code, '/')}" aria-label="{t('nav.brand')}"><span class="brand-mark">hw<span>.</span></span><span class="brand-name">Kugorang<small>{t('nav.role')}</small></span></a>
+    <nav class="site-nav" aria-label="{t('nav.label')}">{nav}</nav><div class="header-tools"><a class="header-contact" href="mailto:{CONTACT}">{t('nav.contact')} {ARROW}</a><details class="language-picker"><summary><span class="sr-only">{t('nav.language')}: </span>{ESC(label)} <span aria-hidden="true">⌄</span></summary><nav class="language-options" aria-label="{t('nav.language')}">{languages}</nav></details></div></header>
   <main id="main" tabindex="-1">{body}</main>
-  <footer class="site-footer wrap"><a class="footer-brand" href="{path_for(code, '/')}">Hyeonwoo Kim <span>© 2026</span></a><p>{t('footer.line')}</p><div><a href="https://github.com/kugorang">GitHub {ARROW}</a><a href="mailto:ialskdji@gmail.com">{t('footer.email')} {ARROW}</a></div></footer>
+  <footer class="site-footer wrap"><a class="footer-brand" href="{path_for(code, '/')}">Kugorang <span>© 2026</span></a><p>{t('footer.line')}</p><div><a href="https://github.com/kugorang">GitHub {ARROW}</a><a href="mailto:{CONTACT}">{t('footer.email')} {ARROW}</a></div></footer>
 </body>
 </html>
 '''.replace('  \n', '\n')
 
 
 def contact(t):
-    return f'''<section class="contact-section" aria-labelledby="contact-title"><div class="wrap contact-inner"><div><p class="eyebrow">{t('contact.eyebrow')}</p><h2 id="contact-title">{t.lines('contact.title')}</h2></div><div><p>{t.lines('contact.desc')}</p><a href="mailto:ialskdji@gmail.com">ialskdji@gmail.com {ARROW}</a></div></div></section>'''
+    return f'''<section class="contact-section" aria-labelledby="contact-title"><div class="wrap contact-inner"><div><p class="eyebrow">{t('contact.eyebrow')}</p><h2 id="contact-title">{t.lines('contact.title')}</h2></div><div><p>{t.lines('contact.desc')}</p><a href="mailto:{CONTACT}">{CONTACT} {ARROW}</a></div></div></section>'''
 
 
 def home(items, code, t):
