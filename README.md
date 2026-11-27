@@ -1,4 +1,4 @@
-# 쿠고랑 · Kugorang
+# 쿠고랑
 
 김현우가 운영하는 앱·게임 사업의 홈페이지: <https://hw.kugora.ng/>
 회사 연락처는 <hw@kugora.ng>입니다. 필데이, 달빛 고물상, CakeTogether의
