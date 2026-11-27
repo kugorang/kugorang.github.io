@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate Kugorang's localized app and game site."""
+"""Generate kugorang's localized app and game site."""
 import argparse
 import html
 import json
@@ -135,10 +135,10 @@ def page(active, route, body, code, t, default=False):
 </head>
 <body>
   <a class="skip-link" href="#main">{t('nav.skip')}</a>
-  <header class="site-header wrap"><a class="brand" href="{path_for(code, '/')}" aria-label="{t('nav.brand')}"><span class="brand-mark">hw<span>.</span></span><span class="brand-name">Kugorang<small>{t('nav.role')}</small></span></a>
+  <header class="site-header wrap"><a class="brand" href="{path_for(code, '/')}" aria-label="{t('nav.brand')}"><span class="brand-mark">hw<span>.</span></span><span class="brand-name">{t('brand.name')}<small>{t('nav.role')}</small></span></a>
     <nav class="site-nav" aria-label="{t('nav.label')}">{nav}</nav><div class="header-tools"><a class="header-contact" href="mailto:{CONTACT}">{t('nav.contact')} {ARROW}</a><details class="language-picker"><summary><span class="sr-only">{t('nav.language')}: </span>{ESC(label)} <span aria-hidden="true">⌄</span></summary><nav class="language-options" aria-label="{t('nav.language')}">{languages}</nav></details></div></header>
   <main id="main" tabindex="-1">{body}</main>
-  <footer class="site-footer wrap"><a class="footer-brand" href="{path_for(code, '/')}">Kugorang <span>© 2026</span></a><p>{t('footer.line')}</p><div><a href="https://github.com/kugorang">GitHub {ARROW}</a><a href="mailto:{CONTACT}">{t('footer.email')} {ARROW}</a></div></footer>
+  <footer class="site-footer wrap"><a class="footer-brand" href="{path_for(code, '/')}">{t('brand.name')} <span>© 2026</span></a><p>{t('footer.line')}</p><div><a href="https://github.com/kugorang">GitHub {ARROW}</a><a href="mailto:{CONTACT}">{t('footer.email')} {ARROW}</a></div></footer>
 </body>
 </html>
 '''.replace('  \n', '\n')

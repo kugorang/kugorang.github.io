@@ -93,7 +93,7 @@
   "art.moonjunk": "모든 물건에는 이야기가 있어요.",
   "art.parcel": "받는 이: 누군가",
   "art.oseonro": "나만의 리듬을 그려요.",
-  "meta.home.title": "쿠고랑 · Kugorang — 김현우의 앱과 게임",
+  "meta.home.title": "쿠고랑 — 김현우의 앱과 게임",
   "meta.home.desc": "쿠고랑은 김현우가 운영하는 앱·게임 사업입니다. 필데이, 달빛 고물상, CakeTogether를 소개합니다.",
   "meta.apps.title": "앱 · 쿠고랑",
   "meta.apps.desc": "쿠고랑의 필데이와 기획 중인 CakeTogether를 소개합니다.",
@@ -130,5 +130,6 @@
   "cake.privacy.title": "공개는 각자의 선택으로.",
   "cake.privacy.desc": "개인별 금액을 다른 참여자에게 공개하지 않고, 이름·메시지의 카드 공개 동의를 따로 확인하는 설계를 검토합니다. 완전한 익명성을 보장한다는 뜻은 아닙니다.",
   "cake.scope": "Flutter를 사용하는 기획입니다. 제공 기능과 웹·모바일의 공개 순서는 검토 중입니다.",
-  "cake.back": "앱 목록으로"
+  "cake.back": "앱 목록으로",
+  "brand.name": "쿠고랑"
 }
