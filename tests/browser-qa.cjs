@@ -68,7 +68,7 @@ async function context(options={}) {
       assert.equal(await page.evaluate(() => document.activeElement.type),'search');
       await page.locator('[data-filter="스토리"]').click();
       assert.equal(await page.locator('[data-project]:visible').count(),1);
-      assert.equal(await page.locator('[data-project]:visible h3').textContent(),'달빛 고물상Moonjunk Workshop');
+      assert.equal(await page.locator('[data-project]:visible h3').textContent(),'달빛 고물상');
       await page.locator('[data-filter=""]').click();
       await input.fill(messages[code]['tag.리듬']);
       assert.equal(await page.locator('[data-project]:visible').count(),1);

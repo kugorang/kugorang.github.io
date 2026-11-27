@@ -29,6 +29,22 @@ class Document(HTMLParser):
         return [a for t, a in self.elements if t == tag and all(a.get(k) == v for k, v in attributes.items())]
 
 
+class ReadableText(HTMLParser):
+    """Collects text a reader or crawler sees: text nodes and descriptive attributes, not URLs, ids or classes."""
+    ATTRIBUTES = ('content', 'title', 'alt', 'aria-label', 'placeholder', 'data-search')
+
+    def __init__(self, source):
+        super().__init__(convert_charrefs=True)
+        self.parts = []
+        self.feed(source)
+
+    def handle_starttag(self, tag, attrs):
+        self.parts.extend(value for name, value in attrs if name in self.ATTRIBUTES and value)
+
+    def handle_data(self, data):
+        self.parts.append(data)
+
+
 class PortfolioContract(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -81,12 +97,13 @@ class PortfolioContract(unittest.TestCase):
 
     def test_featured_and_development_preservation(self):
         items = build.catalog()
-        self.assertEqual([x['id'] for x in items if x['featured']], ['fillday', 'facet'])
+        self.assertEqual([x['id'] for x in items if x['featured']], ['fillday', 'moonjunk'])
         self.assertEqual([x['id'] for x in items if x['status'] == 'released'], ['fillday'])
         for code in build.CODES:
             home = self.output[f'{code}/index.html']
             games = self.output[f'{code}/games/index.html']
-            self.assertNotIn('moonjunk-description', home)
+            self.assertIn('id="moonjunk-description"', home)
+            self.assertNotIn('facet-description', home)
             for id in ('facet','moonjunk','oseonro'): self.assertIn(f'id="{id}-description"', games)
             self.assertNotIn('store-link"', games)
             doc = Document(home)
@@ -94,6 +111,13 @@ class PortfolioContract(unittest.TestCase):
             self.assertEqual(len(stores), 2)
             self.assertEqual(stores[0]['href'], 'https://apps.apple.com/app/id6797272470')
             self.assertEqual(stores[1]['href'], 'https://play.google.com/store/apps/details?id=com.kugorang.fillday')
+
+    def test_moonjunk_english_name_is_not_published(self):
+        # 달빛 고물상 has no public English product name yet; only URLs, ids and classes may carry "moonjunk".
+        for path, text in self.output.items():
+            if not path.endswith('.html'): continue
+            with self.subTest(path=path):
+                self.assertNotIn('moonjunk', ' '.join(ReadableText(text).parts).lower())
 
     def test_install_links_reject_unreleased_projects(self):
         data = json.loads((ROOT / 'data/projects.json').read_text())
