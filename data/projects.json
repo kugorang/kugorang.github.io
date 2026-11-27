@@ -34,6 +34,21 @@
     "visual": "caketogether"
   },
   {
+    "id": "moonjunk",
+    "name": "달빛 고물상",
+    "english_name": "",
+    "category": "games",
+    "headline": "달밤의 고물상 공방에서 고물을 고치고, 깨어난 손님들의 이야기를 듣는다.",
+    "description": "캐릭터 방치형 게임. Flutter로 1인 개발하고 있습니다.",
+    "tags": ["스토리", "수집", "수선"],
+    "platforms": [],
+    "technology": "Flutter",
+    "status": "development",
+    "url": "https://moonjunk.kugora.ng/",
+    "featured": true,
+    "visual": "moonjunk"
+  },
+  {
     "id": "facet",
     "name": "Facet",
     "english_name": "",
@@ -45,23 +60,8 @@
     "technology": "Unity",
     "status": "development",
     "url": "https://facet.kugora.ng/",
-    "featured": true,
-    "visual": "facet"
-  },
-  {
-    "id": "moonjunk",
-    "name": "달빛 고물상",
-    "english_name": "Moonjunk Workshop",
-    "category": "games",
-    "headline": "고치는 물건마다, 이어지는 이야기.",
-    "description": "잊힌 물건을 수선하며 소포에 남은 이야기를 만나는 모바일 게임. 작은 수선공과 함께 긴 밤길의 사연을 하나씩 이어 갑니다.",
-    "tags": ["스토리", "수집", "수선"],
-    "platforms": ["iOS", "Android"],
-    "technology": "Flutter",
-    "status": "development",
-    "url": "https://moonjunk.kugora.ng/",
     "featured": false,
-    "visual": "moonjunk"
+    "visual": "facet"
   },
   {
     "id": "oseonro",
