@@ -50,7 +50,7 @@ GitHub Pages가 `main`의 루트를 게시합니다. `CNAME`에 지정한 주소
 | 작품 | 관리 저장소 | 상세 페이지 |
 | --- | --- | --- |
 | 필데이 | `kugorang/Fillday` | <https://fillday.kugora.ng/> |
-| 달빛 고물상 | `kugorang/moonjunk-pages`의 `main` 루트 | <https://moonjunk.kugora.ng/> |
+| 달빛 고물상 | 별도 비공개 저장소 | <https://moonjunk.kugora.ng/> |
 | Facet | `kugorang/Sudoku`의 `gh-pages` | <https://facet.kugora.ng/> |
 | 오선로 | `kugorang/oseonro`의 `gh-pages` | <https://hw.kugora.ng/oseonro/> |
 
@@ -59,7 +59,7 @@ Facet의 공식 공개 주소는 `facet.kugora.ng`이며 작품 카드도 직접
 공식 주소로 이동시킵니다. 저장소 이름을 신규 공개 링크에 사용하지 않습니다.
 오선로는 기존 `hw.kugora.ng/oseonro/`에서 별도 저장소가 게시합니다.
 
-달빛 고물상의 공개 소개·안내 문서·디자인·실제 플레이 캡처는 `kugorang/moonjunk-pages`에서
+달빛 고물상의 공개 소개·안내 문서·디자인·실제 플레이 캡처는 별도 비공개 저장소에서
 함께 관리하고 전체 사이트를 게시합니다. 안내 문구나 호스팅을 변경할 때도 스타일과 이미지가
 포함된 전체 사이트를 유지하며, 해당 저장소의 README에 적힌 검증 절차를 따릅니다.
 
